@@ -11,6 +11,8 @@ jobs:
           channel: stable
           cache: true
       - run: flutter create . --platforms=android,ios
+      # `flutter create` adds a template test that refers to MyApp; drop it.
+      - run: rm -f test/widget_test.dart
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
