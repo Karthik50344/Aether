@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Every icon the app uses, in one place. They are Material icons for now;
@@ -13,7 +14,8 @@ abstract final class AppIcons {
   static const IconData dropdown = Icons.keyboard_arrow_down;
   static const IconData chevronRight = Icons.chevron_right;
   static const IconData arrowRight = Icons.arrow_forward;
-  static const IconData signal = Icons.network_cell;
+  static const IconData signal = CupertinoIcons.dot_radiowaves_left_right;
+  static const IconData speed = Icons.speed;
   static const IconData offline = Icons.cloud_off;
   static const IconData info = Icons.info_outline;
   static const IconData refresh = Icons.refresh;

@@ -255,7 +255,7 @@ class _ExplorePageState extends State<ExplorePage> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Icon(AppIcons.signal, size: 12, color: p.textSecondary),
+                    Icon(AppIcons.speed, size: 12, color: p.textSecondary),
                     const SizedBox(width: 4),
                     Text('${state.latency!.inMilliseconds}ms',
                         style: AppTypography.label
