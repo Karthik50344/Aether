@@ -91,14 +91,14 @@ class TelemetryBloc extends Bloc<TelemetryEvent, TelemetryState> {
         status: LoadStatus.success,
         latency: d,
         average: Duration(microseconds: totalUs ~/ _samples.length),
-      ));
+      ),);
     } catch (_) {
       emit(TelemetryState(
         status: LoadStatus.failure,
         average: state.average,
         clearing: state.clearing,
         clearedCount: state.clearedCount,
-      ));
+      ),);
     }
   }
 

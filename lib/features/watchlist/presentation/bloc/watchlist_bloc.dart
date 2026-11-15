@@ -35,7 +35,7 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
     on<WatchlistStarted>(_onStarted);
     on<WatchlistRefreshed>(_onRefreshed);
     on<WatchlistEditToggled>(
-        (e, emit) => emit(state.copyWith(editing: !state.editing)));
+        (e, emit) => emit(state.copyWith(editing: !state.editing)),);
     on<WatchlistPairRemoved>(_onRemoved);
     on<WatchlistPairAdded>(_onAdded);
     on<WatchlistReordered>(_onReordered);
@@ -60,7 +60,7 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
   }
 
   Future<void> _onStarted(
-      WatchlistStarted e, Emitter<WatchlistState> emit) async {
+      WatchlistStarted e, Emitter<WatchlistState> emit,) async {
     emit(state.copyWith(status: LoadStatus.loading, clearError: true));
     await _load(emit, force: false);
     final Duration? every = autoRefreshInterval;
@@ -73,7 +73,7 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
   }
 
   Future<void> _onRefreshed(
-      WatchlistRefreshed e, Emitter<WatchlistState> emit) async {
+      WatchlistRefreshed e, Emitter<WatchlistState> emit,) async {
     if (state.status == LoadStatus.loading) return;
     if (e.force && state.status == LoadStatus.failure) {
       emit(state.copyWith(status: LoadStatus.loading, clearError: true));
@@ -98,7 +98,7 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
           updatedAt: _now(),
         ),
         symbols,
-      ));
+      ),);
     } catch (err) {
       final String msg = err is AppException ? err.message : 'Something went wrong.';
       if (state.status == LoadStatus.success) {
@@ -110,7 +110,7 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
   }
 
   Future<void> _onRemoved(
-      WatchlistPairRemoved e, Emitter<WatchlistState> emit) async {
+      WatchlistPairRemoved e, Emitter<WatchlistState> emit,) async {
     final List<String> next =
         state.symbols.where((String s) => s != e.symbol).toList();
     emit(_withSymbols(state, next));
@@ -118,14 +118,14 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
   }
 
   Future<void> _onAdded(
-      WatchlistPairAdded e, Emitter<WatchlistState> emit) async {
+      WatchlistPairAdded e, Emitter<WatchlistState> emit,) async {
     if (state.symbols.contains(e.symbol)) return;
     emit(_withSymbols(state, <String>[e.symbol, ...state.symbols]));
     await _add(e.symbol);
   }
 
   Future<void> _onReordered(
-      WatchlistReordered e, Emitter<WatchlistState> emit) async {
+      WatchlistReordered e, Emitter<WatchlistState> emit,) async {
     final List<String> next = List<String>.of(state.symbols);
     if (e.oldIndex < 0 || e.oldIndex >= next.length) return;
     int to = e.newIndex;

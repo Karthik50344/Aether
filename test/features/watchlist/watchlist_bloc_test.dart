@@ -37,7 +37,7 @@ void main() {
               pair('BTC', 'USDT', percent: 4),
               pair('ETH', 'USDT', percent: -2),
               pair('SOL', 'USDT', percent: 6),
-            ]);
+            ],);
     await store.toggle('SOLUSDT');
     await store.toggle('ETHUSDT');
     await store.toggle('BTCUSDT'); // order: BTC, ETH, SOL
@@ -125,6 +125,6 @@ void main() {
 
   test('summary of an empty list is zeroed', () {
     expect(const ComputeWatchlistSummary()(const []),
-        const WatchlistSummary.empty());
+        const WatchlistSummary.empty(),);
   });
 }

@@ -214,7 +214,7 @@ class _Content extends StatelessWidget {
       child: ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(
-            AppSpacing.screen, AppSpacing.md, AppSpacing.screen, 96),
+            AppSpacing.screen, AppSpacing.md, AppSpacing.screen, 96,),
         children: <Widget>[
           if (state.refreshFailed) ...<Widget>[
             _StaleBanner(message: state.errorMessage ?? 'Refresh failed.', onRetry: retry),
@@ -231,7 +231,7 @@ class _Content extends StatelessWidget {
           if (state.orderflow != null) ...<Widget>[
             const SizedBox(height: AppSpacing.lg),
             OrderflowBanner(
- compact: SettingsScope.compactOf(context),flow: state.orderflow!, quote: q),
+ compact: SettingsScope.compactOf(context),flow: state.orderflow!, quote: q,),
           ],
           const SizedBox(height: AppSpacing.lg),
           ChartCard(
@@ -248,10 +248,10 @@ class _Content extends StatelessWidget {
             onRetry: () => bloc.add(ChartPeriodSelected(state.period)),
           ),
           const SizedBox(height: AppSpacing.xl),
-          _SectionTitle(title: '24H Market Statistics', trailing: 'Binance Spot'),
+          const _SectionTitle(title: '24H Market Statistics', trailing: 'Binance Spot'),
           const SizedBox(height: AppSpacing.md),
           if (state.stats != null) StatGrid(
- compact: SettingsScope.compactOf(context),pair: pair, stats: state.stats!),
+ compact: SettingsScope.compactOf(context),pair: pair, stats: state.stats!,),
           const SizedBox(height: AppSpacing.lg),
           _Section(
             status: state.depthStatus,
@@ -261,10 +261,10 @@ class _Content extends StatelessWidget {
             child: state.depth == null
                 ? const SizedBox.shrink()
                 : DepthMeter(
- compact: SettingsScope.compactOf(context),depth: state.depth!, quote: q, levels: bloc.depthLimit),
+ compact: SettingsScope.compactOf(context),depth: state.depth!, quote: q, levels: bloc.depthLimit,),
           ),
           const SizedBox(height: AppSpacing.xl),
-          _SectionTitle(title: 'Recent Trades', trailing: '● Polling'),
+          const _SectionTitle(title: 'Recent Trades', trailing: '● Polling'),
           const SizedBox(height: AppSpacing.md),
           _Section(
             status: state.tradesStatus,
@@ -318,11 +318,11 @@ class _Section extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(failureText,
-                    style: AppTypography.label.copyWith(color: p.textSecondary)),
+                    style: AppTypography.label.copyWith(color: p.textSecondary),),
                 TextButton(
                   onPressed: onRetry,
                   child: Text('Retry',
-                      style: AppTypography.labelStrong.copyWith(color: p.primaryLight)),
+                      style: AppTypography.labelStrong.copyWith(color: p.primaryLight),),
                 ),
               ],
             )
@@ -347,10 +347,10 @@ class _SectionTitle extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Text(title,
-              style: AppTypography.symbol.copyWith(color: p.textPrimary, fontSize: 15)),
+              style: AppTypography.symbol.copyWith(color: p.textPrimary, fontSize: 15),),
         ),
         Text(trailing,
-            style: AppTypography.label.copyWith(color: p.textSecondary, fontSize: 10)),
+            style: AppTypography.label.copyWith(color: p.textSecondary, fontSize: 10),),
       ],
     );
   }
@@ -371,12 +371,12 @@ class _StaleBanner extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Text('$message Showing the last loaded data.',
-                style: AppTypography.label.copyWith(color: p.negativeLight)),
+                style: AppTypography.label.copyWith(color: p.negativeLight),),
           ),
           TextButton(
             onPressed: onRetry,
             child: Text('Retry',
-                style: AppTypography.labelStrong.copyWith(color: p.negativeLight)),
+                style: AppTypography.labelStrong.copyWith(color: p.negativeLight),),
           ),
         ],
       ),
@@ -440,7 +440,7 @@ class _Skeleton extends StatelessWidget {
             Expanded(child: box(74)),
             const SizedBox(width: 4),
             Expanded(child: box(74)),
-          ]),
+          ],),
         ],
       ),
     );

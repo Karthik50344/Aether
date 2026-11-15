@@ -56,7 +56,7 @@ void main() {
       bloc.add(const CompactMetricsChanged(compact: false));
       await bloc.stream.firstWhere((SettingsState s) =>
           !s.settings.compactMetrics &&
-          s.settings.defaultPeriod == ChartPeriod.month1);
+          s.settings.defaultPeriod == ChartPeriod.month1,);
       await Future<void>.delayed(Duration.zero);
 
       final AppSettings saved = await SettingsRepositoryImpl(store).load();

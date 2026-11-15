@@ -89,7 +89,7 @@ class MarketOverviewCard extends StatelessWidget {
                         child: Text(
                           Fmt.quoteAmount(overview.totalQuoteVolume,
                               overview.quoteAsset,
-                              compact: compact),
+                              compact: compact,),
                           style: AppTypography.heroValue
                               .copyWith(color: p.textPrimary),
                         ),
@@ -101,7 +101,7 @@ class MarketOverviewCard extends StatelessWidget {
                       '${mostlyUp ? '▲' : '▼'} ${share.round()}% advancing',
                       maxLines: 1,
                       style: AppTypography.valueMedium.copyWith(
-                          color: mostlyUp ? p.positive : p.negative),
+                          color: mostlyUp ? p.positive : p.negative,),
                     ),
                   ],
                 ),
@@ -176,18 +176,18 @@ class _MetricTile extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppTypography.micro
-                  .copyWith(color: p.textSecondary, letterSpacing: 0.3)),
+                  .copyWith(color: p.textSecondary, letterSpacing: 0.3),),
           const SizedBox(height: 2),
           Text(value,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppTypography.price
-                  .copyWith(color: valueColor ?? p.textPrimary)),
+                  .copyWith(color: valueColor ?? p.textPrimary),),
           Text(caption,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppTypography.label
-                  .copyWith(color: p.textSecondary, fontSize: 10)),
+                  .copyWith(color: p.textSecondary, fontSize: 10),),
         ],
       ),
     );

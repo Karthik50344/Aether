@@ -55,7 +55,7 @@ void main() {
 
     test('quote and move filters', () {
       final r = f(pairs,
-          const ExploreQuery(quoteAsset: 'USDT', move: MoveFilter.gainers));
+          const ExploreQuery(quoteAsset: 'USDT', move: MoveFilter.gainers),);
       expect(r.map((p) => p.symbol), ['BTCUSDT', 'SOLUSDT']);
       final l = f(pairs, const ExploreQuery(move: MoveFilter.losers));
       expect(l.map((p) => p.symbol), ['ETHUSDT']);
@@ -64,7 +64,7 @@ void main() {
     test('min volume and ascending price sort', () {
       final r = f(
         pairs,
-        ExploreQuery(
+        const ExploreQuery(
           quoteAsset: 'USDT',
           minQuoteVolume: 1e6,
           sortField: SortField.price,

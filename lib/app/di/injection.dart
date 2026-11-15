@@ -63,11 +63,11 @@ Future<void> configureDependencies({
   // Settings: one app-wide bloc, created with the persisted values so the
   // very first frame already uses the saved theme.
   sl.registerLazySingleton<SettingsRepository>(
-      () => SettingsRepositoryImpl(sl<KeyValueStore>()));
+      () => SettingsRepositoryImpl(sl<KeyValueStore>()),);
   sl.registerLazySingleton<GetSettings>(
-      () => GetSettings(sl<SettingsRepository>()));
+      () => GetSettings(sl<SettingsRepository>()),);
   sl.registerLazySingleton<SaveSettings>(
-      () => SaveSettings(sl<SettingsRepository>()));
+      () => SaveSettings(sl<SettingsRepository>()),);
   final AppSettings loadedSettings = await sl<GetSettings>()();
   sl.registerSingleton<SettingsBloc>(
     SettingsBloc(saveSettings: sl<SaveSettings>(), initial: loadedSettings),
@@ -90,52 +90,52 @@ Future<void> configureDependencies({
 
   // Use cases
   sl.registerLazySingleton<GetTradingPairs>(
-      () => GetTradingPairs(sl<MarketRepository>()));
+      () => GetTradingPairs(sl<MarketRepository>()),);
   sl.registerLazySingleton<GetTradingPair>(
-      () => GetTradingPair(sl<MarketRepository>()));
+      () => GetTradingPair(sl<MarketRepository>()),);
   sl.registerLazySingleton<GetSparkline>(
-      () => GetSparkline(sl<MarketRepository>()));
+      () => GetSparkline(sl<MarketRepository>()),);
   sl.registerLazySingleton<PingMarket>(
-      () => PingMarket(sl<MarketRepository>()));
+      () => PingMarket(sl<MarketRepository>()),);
   sl.registerLazySingleton<ComputeMarketOverview>(
-      () => const ComputeMarketOverview());
+      () => const ComputeMarketOverview(),);
   sl.registerLazySingleton<SelectMarketMovers>(
-      () => const SelectMarketMovers());
+      () => const SelectMarketMovers(),);
   sl.registerLazySingleton<FilterSortPairs>(() => const FilterSortPairs());
   sl.registerLazySingleton<ComputeMarketFlow>(() => const ComputeMarketFlow());
   sl.registerLazySingleton<SearchFocusSignal>(SearchFocusSignal.new);
   sl.registerLazySingleton<GetCandlesticks>(
-      () => GetCandlesticks(sl<MarketRepository>()));
+      () => GetCandlesticks(sl<MarketRepository>()),);
   sl.registerLazySingleton<GetRecentTrades>(
-      () => GetRecentTrades(sl<MarketRepository>()));
+      () => GetRecentTrades(sl<MarketRepository>()),);
   sl.registerLazySingleton<GetOrderBookDepth>(
-      () => GetOrderBookDepth(sl<MarketRepository>()));
+      () => GetOrderBookDepth(sl<MarketRepository>()),);
 
   sl.registerLazySingleton<GetDailyCandles>(
-      () => GetDailyCandles(sl<MarketRepository>()));
+      () => GetDailyCandles(sl<MarketRepository>()),);
   sl.registerLazySingleton<BuildChartSeries>(() => const BuildChartSeries());
   sl.registerLazySingleton<ComputePairStats>(() => const ComputePairStats());
 
   sl.registerLazySingleton<ClearMarketCache>(
-      () => ClearMarketCache(sl<MarketRepository>()));
+      () => ClearMarketCache(sl<MarketRepository>()),);
   sl.registerLazySingleton<ComputeWatchlistSummary>(
-      () => const ComputeWatchlistSummary());
+      () => const ComputeWatchlistSummary(),);
 
   // Watchlist (persistent)
   sl.registerLazySingleton<WatchlistRepository>(
-      () => WatchlistRepositoryImpl(sl<KeyValueStore>()));
+      () => WatchlistRepositoryImpl(sl<KeyValueStore>()),);
   sl.registerLazySingleton<IsInWatchlist>(
-      () => IsInWatchlist(sl<WatchlistRepository>()));
+      () => IsInWatchlist(sl<WatchlistRepository>()),);
   sl.registerLazySingleton<ToggleWatchlist>(
-      () => ToggleWatchlist(sl<WatchlistRepository>()));
+      () => ToggleWatchlist(sl<WatchlistRepository>()),);
   sl.registerLazySingleton<GetWatchlist>(
-      () => GetWatchlist(sl<WatchlistRepository>()));
+      () => GetWatchlist(sl<WatchlistRepository>()),);
   sl.registerLazySingleton<AddToWatchlist>(
-      () => AddToWatchlist(sl<WatchlistRepository>()));
+      () => AddToWatchlist(sl<WatchlistRepository>()),);
   sl.registerLazySingleton<RemoveFromWatchlist>(
-      () => RemoveFromWatchlist(sl<WatchlistRepository>()));
+      () => RemoveFromWatchlist(sl<WatchlistRepository>()),);
   sl.registerLazySingleton<ReorderWatchlist>(
-      () => ReorderWatchlist(sl<WatchlistRepository>()));
+      () => ReorderWatchlist(sl<WatchlistRepository>()),);
 
   // Blocs are factories: each screen instance gets its own.
   sl.registerFactory<MarketBloc>(

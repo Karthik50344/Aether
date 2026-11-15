@@ -20,7 +20,7 @@ void main() {
         baseUrl: 'https://example.test',
         responseType: ResponseType.plain,
         validateStatus: (_) => true,
-      ))..httpClientAdapter = http,
+      ),)..httpClientAdapter = http,
       now: () => clock,
       retryDelay: Duration.zero,
     );
@@ -38,11 +38,11 @@ void main() {
       () async {
     http.enqueueJson('{}', status: 429, headers: <String, List<String>>{
       'retry-after': <String>['30'],
-    });
+    },);
     await expectLater(
       api.getJson('/x'),
       throwsA(isA<RateLimitedException>()
-          .having((e) => e.retryAfter, 'retryAfter', const Duration(seconds: 30))),
+          .having((e) => e.retryAfter, 'retryAfter', const Duration(seconds: 30)),),
     );
     expect(http.requests, hasLength(1));
 

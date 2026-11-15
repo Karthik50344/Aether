@@ -19,7 +19,7 @@ class SettingsSection extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 4, bottom: 8),
           child: Text(title.toUpperCase(),
-              style: AppTypography.micro.copyWith(color: p.textSecondary)),
+              style: AppTypography.micro.copyWith(color: p.textSecondary),),
         ),
         Container(
           decoration: BoxDecoration(
@@ -31,7 +31,7 @@ class SettingsSection extends StatelessWidget {
               if (i > 0) Divider(height: 1, color: p.surfaceHighest),
               children[i],
             ],
-          ]),
+          ],),
         ),
         const SizedBox(height: 20),
       ],
@@ -67,11 +67,11 @@ class SettingsRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(label,
-                      style: AppTypography.body.copyWith(color: p.textPrimary)),
+                      style: AppTypography.body.copyWith(color: p.textPrimary),),
                   if (hint != null)
                     Text(hint!,
                         style: AppTypography.label
-                            .copyWith(color: p.textSecondary)),
+                            .copyWith(color: p.textSecondary),),
                 ],
               ),
             ),

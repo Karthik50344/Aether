@@ -129,7 +129,7 @@ class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
         refreshing: false,
         refreshFailed: false,
         clearError: true,
-      )));
+      ),),);
     } on AppException catch (e) {
       if (seq != _loadSeq) return;
       _emitFailure(emit, e.message, firstLoad);
@@ -145,13 +145,13 @@ class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
         refreshing: false,
         refreshFailed: true,
         errorMessage: message,
-      ));
+      ),);
     } else {
       emit(state.copyWith(
         status: LoadStatus.failure,
         refreshing: false,
         errorMessage: message,
-      ));
+      ),);
     }
   }
 
@@ -239,13 +239,13 @@ class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
     emit(_derive(state.copyWith(
       query: query,
       visibleCount: ExploreState.pageSize,
-    )));
+    ),),);
   }
 
   void _onShowMore(ExploreShowMore e, Emitter<ExploreState> emit) {
     emit(state.copyWith(
       visibleCount: state.visibleCount + ExploreState.pageSize,
-    ));
+    ),);
   }
 
   ExploreState _derive(ExploreState s) {
@@ -303,7 +303,7 @@ class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
     emit(state.copyWith(sparklines: <String, List<double>>{
       ...state.sparklines,
       ...e.series,
-    }));
+    },),);
   }
 
   // --- auto refresh -------------------------------------------------------------

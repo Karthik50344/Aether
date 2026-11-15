@@ -30,7 +30,7 @@ class PrivacyPage extends StatelessWidget {
         children: <Widget>[
           for (final (String t, String b) in _items) ...<Widget>[
             Text(t,
-                style: AppTypography.sectionTitle.copyWith(color: p.textPrimary)),
+                style: AppTypography.sectionTitle.copyWith(color: p.textPrimary),),
             const SizedBox(height: 4),
             Text(b, style: AppTypography.body.copyWith(color: p.textSecondary)),
             const SizedBox(height: 18),

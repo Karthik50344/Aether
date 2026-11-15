@@ -89,7 +89,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
       children: <Widget>[
         Text('My Watchlist',
             style: AppTypography.heroValue
-                .copyWith(color: p.textPrimary, fontSize: 28)),
+                .copyWith(color: p.textPrimary, fontSize: 28),),
         const SizedBox(height: 4),
         Text(
           '${s.symbols.length} SAVED PAIRS · STORED ON THIS DEVICE',
@@ -148,7 +148,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
 
     final Widget head = Padding(
       padding: const EdgeInsets.fromLTRB(
-          AppSpacing.screen, AppSpacing.xl, AppSpacing.screen, 0),
+          AppSpacing.screen, AppSpacing.xl, AppSpacing.screen, 0,),
       child: _header(context, p, s),
     );
     final Widget pill = Padding(
@@ -196,7 +196,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
         const SizedBox(height: AppSpacing.xl),
         Text('My Watchlist',
             style: AppTypography.heroValue
-                .copyWith(color: p.textPrimary, fontSize: 28)),
+                .copyWith(color: p.textPrimary, fontSize: 28),),
         const SizedBox(height: 48),
         Center(
           child: CustomPaint(
@@ -211,7 +211,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
         const SizedBox(height: 24),
         Text('Your watchlist is empty',
             textAlign: TextAlign.center,
-            style: AppTypography.sectionTitle.copyWith(color: p.textPrimary)),
+            style: AppTypography.sectionTitle.copyWith(color: p.textPrimary),),
         const SizedBox(height: 8),
         Text(
           'Save pairs with the star on a pair page, or add one here. '
@@ -259,7 +259,7 @@ class _DashedCirclePainter extends CustomPainter {
     const double sweep = 2 * 3.141592653589793 / dashes;
     for (int i = 0; i < dashes; i++) {
       canvas.drawArc(Rect.fromCircle(center: c, radius: r), i * sweep,
-          sweep * 0.55, false, paint);
+          sweep * 0.55, false, paint,);
     }
   }
 

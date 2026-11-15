@@ -128,15 +128,15 @@ void main() {
     // 1D is the default: the real 24h window.
     final chart = tester.widget<LineChart>(find.byType(LineChart));
     expect(chart.data.extraLinesData.horizontalLines.first.label.labelResolver(
-            chart.data.extraLinesData.horizontalLines.first),
-        startsWith('24h High'));
+            chart.data.extraLinesData.horizontalLines.first,),
+        startsWith('24h High'),);
 
     await tester.tap(find.text('1W'));
     await tester.pumpAndSettle();
     final week = tester.widget<LineChart>(find.byType(LineChart));
     expect(week.data.extraLinesData.horizontalLines.first.label.labelResolver(
-            week.data.extraLinesData.horizontalLines.first),
-        startsWith('Period High'));
+            week.data.extraLinesData.horizontalLines.first,),
+        startsWith('Period High'),);
     await unmount(tester);
   });
 
@@ -173,7 +173,7 @@ void main() {
       },
     );
     addTearDown(() => tester.binding.defaultBinaryMessenger
-        .setMockMethodCallHandler(SystemChannels.platform, null));
+        .setMockMethodCallHandler(SystemChannels.platform, null),);
 
     await pumpPage(tester);
     await tester.tap(find.byIcon(Icons.ios_share));

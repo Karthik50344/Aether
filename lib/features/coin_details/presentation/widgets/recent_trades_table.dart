@@ -48,12 +48,12 @@ class RecentTradesTable extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Text('Size ($baseAsset)',
-                      textAlign: TextAlign.right, style: head()),
+                      textAlign: TextAlign.right, style: head(),),
                 ),
                 Expanded(
                   flex: 3,
                   child: Text('Price ($quoteAsset)',
-                      textAlign: TextAlign.right, style: head()),
+                      textAlign: TextAlign.right, style: head(),),
                 ),
               ],
             ),
@@ -62,7 +62,7 @@ class RecentTradesTable extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20),
               child: Text('No recent trades.',
-                  style: AppTypography.label.copyWith(color: p.textSecondary)),
+                  style: AppTypography.label.copyWith(color: p.textSecondary),),
             )
           else
             for (int i = 0; i < rows.length; i++)

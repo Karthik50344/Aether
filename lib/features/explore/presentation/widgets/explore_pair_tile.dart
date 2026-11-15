@@ -87,7 +87,7 @@ class _ExplorePairTileState extends State<ExplorePairTile> {
                               style: AppTypography.label
                                   .copyWith(color: p.textSecondary),
                             ),
-                          ]),
+                          ],),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),

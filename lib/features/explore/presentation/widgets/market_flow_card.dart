@@ -128,7 +128,7 @@ class _BreadthBar extends StatelessWidget {
                     if (flat > 0)
                       Expanded(
                           flex: flat,
-                          child: ColoredBox(color: p.surfaceHighest)),
+                          child: ColoredBox(color: p.surfaceHighest),),
                     if (down > 0)
                       Expanded(flex: down, child: ColoredBox(color: p.negative)),
                   ],

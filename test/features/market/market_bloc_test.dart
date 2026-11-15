@@ -62,7 +62,7 @@ void main() {
           symbol: any(named: 'symbol'),
           interval: any(named: 'interval'),
           limit: any(named: 'limit'),
-        )).thenAnswer((_) async => candles());
+        ),).thenAnswer((_) async => candles());
     bloc = build();
   });
 
@@ -104,7 +104,7 @@ void main() {
 
     bloc.add(const MarketSectorSelected('all'));
     await bloc.stream.firstWhere((s) => s.sector == Sector.all);
-    bloc.add(MarketSortChanged(SortField.price, ascending: true));
+    bloc.add(const MarketSortChanged(SortField.price, ascending: true));
     await bloc.stream.firstWhere((s) => s.sortField == SortField.price);
     expect(bloc.state.listPairs.first.symbol, 'DOGEUSDT');
   });

@@ -66,7 +66,7 @@ class PairOverview extends StatelessWidget {
                         ),
                         child: Text('Spot',
                             style: AppTypography.label
-                                .copyWith(color: p.primaryLight, fontSize: 10)),
+                                .copyWith(color: p.primaryLight, fontSize: 10),),
                       ),
                     ],
                   ),
@@ -192,7 +192,7 @@ class _ActionChip extends StatelessWidget {
                   const SizedBox(width: 6),
                   Text(label!,
                       style: AppTypography.label
-                          .copyWith(color: active ? p.primaryLight : p.textPrimary)),
+                          .copyWith(color: active ? p.primaryLight : p.textPrimary),),
                 ],
               ],
             ),

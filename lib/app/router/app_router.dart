@@ -40,7 +40,7 @@ GoRouter buildAppRouter({String initialLocation = RoutePaths.market}) {
     routes: <RouteBase>[
       StatefulShellRoute.indexedStack(
         builder: (BuildContext context, GoRouterState state,
-            StatefulNavigationShell shell) {
+            StatefulNavigationShell shell,) {
           return AppShell(navigationShell: shell);
         },
         branches: <StatefulShellBranch>[

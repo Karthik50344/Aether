@@ -72,7 +72,7 @@ void main() {
           symbol: any(named: 'symbol'),
           interval: any(named: 'interval'),
           limit: any(named: 'limit'),
-        )).thenAnswer((_) async => candles());
+        ),).thenAnswer((_) async => candles());
     bloc = build();
   });
 
@@ -87,7 +87,7 @@ void main() {
     await started();
     final s = bloc.state;
     expect(s.results.map((p) => p.symbol),
-        ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT']);
+        ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT'],);
     expect(s.quoteTabs, ['USDT', 'BTC', 'EUR']);
     expect(s.flow!.quoteAsset, 'USDT');
     expect(s.latency, const Duration(milliseconds: 18));
@@ -105,12 +105,12 @@ void main() {
   test('quote selection resets the min-volume filter and can show All',
       () async {
     await started();
-    bloc.add(ExploreFiltersApplied(
+    bloc.add(const ExploreFiltersApplied(
       move: MoveFilter.none,
       minQuoteVolume: 1e9,
       sortField: SortField.volume,
       ascending: false,
-    ));
+    ),);
     await bloc.stream.firstWhere((s) => s.query.minQuoteVolume == 1e9);
     expect(bloc.state.results.length, 3);
     expect(bloc.state.activeFilterCount, 1);
@@ -128,15 +128,15 @@ void main() {
 
   test('move filter, clear chips and reset', () async {
     await started();
-    bloc.add(ExploreFiltersApplied(
+    bloc.add(const ExploreFiltersApplied(
       move: MoveFilter.gainers,
       minQuoteVolume: 0,
       sortField: SortField.change,
       ascending: false,
-    ));
+    ),);
     await bloc.stream.firstWhere((s) => s.query.move == MoveFilter.gainers);
     expect(bloc.state.results.map((p) => p.symbol),
-        ['SOLUSDT', 'DOGEUSDT', 'BTCUSDT']);
+        ['SOLUSDT', 'DOGEUSDT', 'BTCUSDT'],);
     expect(bloc.state.activeFilterCount, 2); // move + custom sort
 
     bloc.add(const ExploreMoveCleared());
@@ -226,7 +226,7 @@ void main() {
           symbol: any(named: 'symbol'),
           interval: any(named: 'interval'),
           limit: any(named: 'limit'),
-        )).thenAnswer((_) async {
+        ),).thenAnswer((_) async {
       active++;
       if (active > peak) peak = active;
       final gate = Completer<void>();
@@ -235,7 +235,7 @@ void main() {
       active--;
       return candles();
     });
-    bloc.close();
+    await bloc.close();
     bloc = build(concurrency: 2);
     await started();
 
@@ -262,7 +262,7 @@ void main() {
           symbol: any(named: 'symbol'),
           interval: any(named: 'interval'),
           limit: any(named: 'limit'),
-        )).thenThrow(const NetworkUnavailableException());
+        ),).thenThrow(const NetworkUnavailableException());
     await started();
     bloc.add(const ExploreSparklineRequested('BTCUSDT'));
     final s = await bloc.stream.firstWhere((s) => s.sparklines.isNotEmpty);

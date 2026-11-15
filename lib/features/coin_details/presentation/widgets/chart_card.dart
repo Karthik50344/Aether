@@ -109,7 +109,7 @@ class ChartCard extends StatelessWidget {
               TextButton(
                 onPressed: onRetry,
                 child: Text('Retry',
-                    style: AppTypography.labelStrong.copyWith(color: p.primaryLight)),
+                    style: AppTypography.labelStrong.copyWith(color: p.primaryLight),),
               ),
             ],
           ),

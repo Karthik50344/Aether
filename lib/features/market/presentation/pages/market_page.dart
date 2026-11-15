@@ -85,7 +85,7 @@ class _Content extends StatelessWidget {
       child: ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(
-            AppSpacing.screen, AppSpacing.md, AppSpacing.screen, AppSpacing.xxl),
+            AppSpacing.screen, AppSpacing.md, AppSpacing.screen, AppSpacing.xxl,),
         children: <Widget>[
           StatusStrip(
             latency: state.latency,
@@ -182,7 +182,7 @@ class _Content extends StatelessWidget {
           else
             for (final TradingPair pair in rows) ...<Widget>[
               SpotMarketTile(
- compact: SettingsScope.compactOf(context),pair: pair, onTap: () => _openPair(context, pair)),
+ compact: SettingsScope.compactOf(context),pair: pair, onTap: () => _openPair(context, pair),),
               const SizedBox(height: AppSpacing.rowGap),
             ],
           if (state.listPairs.length > MarketPage.visibleRows)
@@ -195,7 +195,7 @@ class _Content extends StatelessWidget {
                   foregroundColor: p.primaryLight,
                   side: BorderSide(color: p.surfaceHighest),
                   shape: const RoundedRectangleBorder(
-                      borderRadius: AppRadii.cardRadius),
+                      borderRadius: AppRadii.cardRadius,),
                 ),
                 child: Text(
                   'See all ${state.listPairs.length} pairs in Explore',
@@ -278,7 +278,7 @@ class _StaleBanner extends StatelessWidget {
           TextButton(
             onPressed: onRetry,
             child: Text('Retry',
-                style: AppTypography.labelStrong.copyWith(color: p.negativeLight)),
+                style: AppTypography.labelStrong.copyWith(color: p.negativeLight),),
           ),
         ],
       ),
@@ -315,7 +315,7 @@ class _DashboardSkeleton extends StatelessWidget {
             Expanded(child: box(118)),
             const SizedBox(width: 8),
             Expanded(child: box(118)),
-          ]),
+          ],),
           const SizedBox(height: 16),
           for (int i = 0; i < 4; i++) ...<Widget>[
             box(64),

@@ -32,7 +32,7 @@ class SelectMarketMovers {
     ];
     final List<TradingPair> top = <TradingPair>[...ofQuote]
       ..sort((TradingPair a, TradingPair b) =>
-          b.quoteVolume.compareTo(a.quoteVolume));
+          b.quoteVolume.compareTo(a.quoteVolume),);
     final List<TradingPair> liquid = <TradingPair>[
       for (final TradingPair p in ofQuote)
         if (p.quoteVolume >= floor) p,
@@ -41,12 +41,12 @@ class SelectMarketMovers {
       for (final TradingPair p in liquid)
         if (p.priceChangePercent > 0) p,
     ]..sort((TradingPair a, TradingPair b) =>
-        b.priceChangePercent.compareTo(a.priceChangePercent));
+        b.priceChangePercent.compareTo(a.priceChangePercent),);
     final List<TradingPair> lose = <TradingPair>[
       for (final TradingPair p in liquid)
         if (p.priceChangePercent < 0) p,
     ]..sort((TradingPair a, TradingPair b) =>
-        a.priceChangePercent.compareTo(b.priceChangePercent));
+        a.priceChangePercent.compareTo(b.priceChangePercent),);
     List<TradingPair> take(List<TradingPair> l) =>
         l.length > limit ? l.sublist(0, limit) : l;
     return MarketMovers(

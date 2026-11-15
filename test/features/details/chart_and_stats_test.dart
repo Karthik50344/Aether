@@ -32,7 +32,7 @@ void main() {
   group('moving average', () {
     test('is null until the window is full, then exact', () {
       final ma = BuildChartSeries.movingAverage(
-          [for (int i = 1; i <= 10; i++) i.toDouble()], 7);
+          [for (int i = 1; i <= 10; i++) i.toDouble()], 7,);
       expect(ma.take(6), everyElement(isNull));
       expect(ma[6], 4); // mean of 1..7
       expect(ma[9], 7); // mean of 4..10
@@ -65,7 +65,7 @@ void main() {
 
     test('only gains -> 100, flat -> 50, always within 0..100', () {
       final up = BuildChartSeries.rsi(
-          [for (int i = 0; i < 30; i++) 100.0 + i], 14);
+          [for (int i = 0; i < 30; i++) 100.0 + i], 14,);
       expect(up.last, 100);
       final flat = BuildChartSeries.rsi(List.filled(30, 100.0), 14);
       expect(flat.last, 50);

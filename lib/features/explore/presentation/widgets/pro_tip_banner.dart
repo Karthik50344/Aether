@@ -41,7 +41,7 @@ class ProTipBanner extends StatelessWidget {
                       'Search a pair like BTCUSDT or a name like "bitcoin", or switch the quote asset tabs to explore other markets.',
                   style: AppTypography.label.copyWith(color: p.textSecondary),
                 ),
-              ]),
+              ],),
             ),
           ),
         ],

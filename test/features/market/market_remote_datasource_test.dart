@@ -23,7 +23,7 @@ void main() {
           baseUrl: 'https://data-api.binance.vision',
           responseType: ResponseType.plain,
           validateStatus: (_) => true,
-        ))
+        ),)
           ..httpClientAdapter = http,
         retryDelay: Duration.zero,
       ),
@@ -70,7 +70,7 @@ void main() {
 
   test('fetchRecentTrades and fetchDepth hit their endpoints', () async {
     http.enqueueJson(
-        '[{"id":1,"price":"1","qty":"2","quoteQty":"2","time":1700000000000,"isBuyerMaker":true}]');
+        '[{"id":1,"price":"1","qty":"2","quoteQty":"2","time":1700000000000,"isBuyerMaker":true}]',);
     final List<RecentTradeModel> t =
         await ds.fetchRecentTrades(symbol: 'BTCUSDT', limit: 20);
     expect(t, hasLength(1));
@@ -101,6 +101,6 @@ void main() {
   test('an unexpected shape -> ParseException', () async {
     http.enqueueJson('{"oops":true}');
     await expectLater(ds.fetchKlines(symbol: 'BTCUSDT', interval: '1m', limit: 5),
-        throwsA(isA<ParseException>()));
+        throwsA(isA<ParseException>()),);
   });
 }

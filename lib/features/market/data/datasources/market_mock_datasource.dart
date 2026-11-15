@@ -149,7 +149,7 @@ class MarketMockDataSource implements MarketDataSource {
     try {
       return await pending;
     } catch (_) {
-      _cache.remove(file); // allow a retry
+      await  _cache.remove(file); // allow a retry
       rethrow;
     }
   }

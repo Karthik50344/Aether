@@ -28,7 +28,7 @@ void main() {
 
   test('klines honour limit and are ordered oldest first', () async {
     final k = await source.fetchKlines(
-        symbol: 'BTCUSDT', interval: '15m', limit: 96);
+        symbol: 'BTCUSDT', interval: '15m', limit: 96,);
     expect(k.length, 96);
     expect(k.first.openTime.isBefore(k.last.openTime), isTrue);
     for (final c in k) {
@@ -38,15 +38,15 @@ void main() {
 
   test('timestamps shift by whole days and keep candle alignment', () async {
     final a = await source.fetchKlines(
-        symbol: 'BTCUSDT', interval: '1h', limit: 5);
+        symbol: 'BTCUSDT', interval: '1h', limit: 5,);
     final later = MarketMockDataSource(
       loadText: _file,
       now: () => kMockAnchor.add(const Duration(days: 3, hours: 5)),
     );
     final b = await later.fetchKlines(
-        symbol: 'BTCUSDT', interval: '1h', limit: 5);
+        symbol: 'BTCUSDT', interval: '1h', limit: 5,);
     expect(b.first.openTime.difference(a.first.openTime),
-        const Duration(days: 3));
+        const Duration(days: 3),);
     expect(b.first.openTime.minute, 0);
   });
 

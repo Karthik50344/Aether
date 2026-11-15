@@ -99,7 +99,7 @@ class _Chip extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(label,
-                  style: AppTypography.label.copyWith(color: p.textSecondary)),
+                  style: AppTypography.label.copyWith(color: p.textSecondary),),
               if (onClear != null) ...<Widget>[
                 const SizedBox(width: 4),
                 Icon(Icons.close, size: 12, color: p.textSecondary),

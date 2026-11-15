@@ -49,19 +49,19 @@ class WatchlistSummaryPill extends StatelessWidget {
   }
 
   Widget _cell(AppPalette p, String label, String value, Color color,
-      CrossAxisAlignment align) {
+      CrossAxisAlignment align,) {
     return Column(
       crossAxisAlignment: align,
       children: <Widget>[
         Text(label,
             maxLines: 1,
-            style: AppTypography.label.copyWith(color: p.textSecondary)),
+            style: AppTypography.label.copyWith(color: p.textSecondary),),
         const SizedBox(height: 2),
         FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(value,
               maxLines: 1,
-              style: AppTypography.valueMedium.copyWith(color: color)),
+              style: AppTypography.valueMedium.copyWith(color: color),),
         ),
       ],
     );

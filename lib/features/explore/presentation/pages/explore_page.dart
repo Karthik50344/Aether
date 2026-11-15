@@ -81,7 +81,7 @@ class _ExplorePageState extends State<ExplorePage> {
       minQuoteVolume: r.minQuoteVolume,
       sortField: r.sortField,
       ascending: r.ascending,
-    ));
+    ),);
   }
 
   void _resetAll(BuildContext context) {
@@ -139,7 +139,7 @@ class _ExplorePageState extends State<ExplorePage> {
         slivers: <Widget>[
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(
-                AppSpacing.screen, AppSpacing.md, AppSpacing.screen, 0),
+                AppSpacing.screen, AppSpacing.md, AppSpacing.screen, 0,),
             sliver: SliverToBoxAdapter(child: _header(context, state)),
           ),
           if (rows.isEmpty)
@@ -181,7 +181,7 @@ class _ExplorePageState extends State<ExplorePage> {
             ),
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(AppSpacing.screen, AppSpacing.sm,
-                AppSpacing.screen, AppSpacing.xxl),
+                AppSpacing.screen, AppSpacing.xxl,),
             sliver: SliverToBoxAdapter(
               child: Column(
                 children: <Widget>[
@@ -195,7 +195,7 @@ class _ExplorePageState extends State<ExplorePage> {
                           foregroundColor: p.primaryLight,
                           side: BorderSide(color: p.surfaceHighest),
                           shape: const RoundedRectangleBorder(
-                              borderRadius: AppRadii.cardRadius),
+                              borderRadius: AppRadii.cardRadius,),
                         ),
                         child: Text(
                           'Show more (${Fmt.integer(state.remaining)} remaining)',
@@ -205,7 +205,7 @@ class _ExplorePageState extends State<ExplorePage> {
                       ),
                     ),
                   if (state.flow != null) MarketFlowCard(
- compact: SettingsScope.compactOf(context),flow: state.flow!),
+ compact: SettingsScope.compactOf(context),flow: state.flow!,),
                   const SizedBox(height: AppSpacing.md),
                   const ProTipBanner(),
                 ],
@@ -259,7 +259,7 @@ class _ExplorePageState extends State<ExplorePage> {
                     const SizedBox(width: 4),
                     Text('${state.latency!.inMilliseconds}ms',
                         style: AppTypography.label
-                            .copyWith(color: p.textSecondary)),
+                            .copyWith(color: p.textSecondary),),
                   ],
                 ),
               ),
@@ -285,7 +285,7 @@ class _ExplorePageState extends State<ExplorePage> {
                   onPressed: () => bloc.add(const ExploreRefreshed()),
                   child: Text('Retry',
                       style: AppTypography.labelStrong
-                          .copyWith(color: p.negativeLight)),
+                          .copyWith(color: p.negativeLight),),
                 ),
               ],
             ),
@@ -293,7 +293,7 @@ class _ExplorePageState extends State<ExplorePage> {
         ],
         const SizedBox(height: AppSpacing.md),
         Text('Explore Markets',
-            style: AppTypography.heroValue.copyWith(color: p.textPrimary)),
+            style: AppTypography.heroValue.copyWith(color: p.textPrimary),),
         const SizedBox(height: 2),
         Text(
           'Discover ${Fmt.integer(state.allPairs.length)} spot trading pairs across quote markets',

@@ -61,7 +61,7 @@ class SpotMarketTile extends StatelessWidget {
                               style: AppTypography.label
                                   .copyWith(color: p.textSecondary),
                             ),
-                          ]),
+                          ],),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),

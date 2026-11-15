@@ -17,7 +17,7 @@ class AppConfig {
   factory AppConfig.fromEnvironment() {
     const String raw =
         String.fromEnvironment('DATA_SOURCE', defaultValue: DataSourceMode.mock);
-    return AppConfig(
+    return const AppConfig(
       dataSource: raw == DataSourceMode.remote
           ? DataSourceMode.remote
           : DataSourceMode.mock,

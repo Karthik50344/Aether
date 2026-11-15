@@ -18,11 +18,11 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         super(SettingsState(settings: initial)) {
     on<ThemeChanged>((e, emit) => _apply(emit, state.settings.copyWith(theme: e.theme)));
     on<DefaultQuoteChanged>(
-        (e, emit) => _apply(emit, state.settings.copyWith(defaultQuote: e.quote)));
+        (e, emit) => _apply(emit, state.settings.copyWith(defaultQuote: e.quote)),);
     on<DefaultPeriodChanged>(
-        (e, emit) => _apply(emit, state.settings.copyWith(defaultPeriod: e.period)));
+        (e, emit) => _apply(emit, state.settings.copyWith(defaultPeriod: e.period)),);
     on<CompactMetricsChanged>(
-        (e, emit) => _apply(emit, state.settings.copyWith(compactMetrics: e.compact)));
+        (e, emit) => _apply(emit, state.settings.copyWith(compactMetrics: e.compact)),);
   }
 
   final SaveSettings _save;

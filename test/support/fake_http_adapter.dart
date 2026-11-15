@@ -17,14 +17,14 @@ class FakeHttpAdapter implements HttpClientAdapter {
       _queue.add(responder);
 
   void enqueueJson(String body,
-          {int status = 200, Map<String, List<String>>? headers}) =>
+          {int status = 200, Map<String, List<String>>? headers,}) =>
       enqueue((_) => json(body, status: status, headers: headers));
 
   void enqueueError(DioExceptionType type) => enqueue((RequestOptions o) =>
-      throw DioException(requestOptions: o, type: type));
+      throw DioException(requestOptions: o, type: type),);
 
   static ResponseBody json(String body,
-          {int status = 200, Map<String, List<String>>? headers}) =>
+          {int status = 200, Map<String, List<String>>? headers,}) =>
       ResponseBody.fromString(
         body,
         status,

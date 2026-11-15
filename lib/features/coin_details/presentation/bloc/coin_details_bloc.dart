@@ -59,7 +59,7 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
         super(CoinDetailsState(
           symbol: symbol.trim().toUpperCase(),
           period: initialPeriod,
-        )) {
+        ),) {
     on<CoinDetailsStarted>(_onStarted);
     on<CoinDetailsRefreshed>(_onRefreshed);
     on<ChartPeriodSelected>(_onPeriod);
@@ -128,7 +128,7 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
         stats: _computeStats(pair, daily: _daily),
         lastUpdated: _now(),
         clearError: true,
-      ));
+      ),);
     } on AppException catch (e) {
       if (seq != _loadSeq) return;
       _pairFailure(emit, e.message, first);
@@ -158,13 +158,13 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
         refreshing: false,
         refreshFailed: true,
         errorMessage: message,
-      ));
+      ),);
     } else {
       emit(state.copyWith(
         pairStatus: LoadStatus.failure,
         refreshing: false,
         errorMessage: message,
-      ));
+      ),);
     }
   }
 
@@ -183,13 +183,13 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
       emit(state.copyWith(
         chartStatus: LoadStatus.success,
         series: _buildSeries(candles),
-      ));
+      ),);
     } catch (_) {
       if (seq != _chartSeq) return;
       // keep older series on a failed background refresh
       emit(state.copyWith(
         chartStatus: state.series == null ? LoadStatus.failure : LoadStatus.success,
-      ));
+      ),);
     }
   }
 
@@ -204,7 +204,7 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
         stats: _computeStats(pair, daily: daily),
         orderflow: _computeStats.orderflow(daily),
         clearOrderflow: _computeStats.orderflow(daily) == null,
-      ));
+      ),);
     } catch (_) {
       // Optional context (7D comparison, taker flow): the page works without.
     }
@@ -222,12 +222,12 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
       emit(state.copyWith(
         tradesStatus: LoadStatus.success,
         trades: trades.reversed.toList(growable: false),
-      ));
+      ),);
     } catch (_) {
       if (seq != _loadSeq) return;
       emit(state.copyWith(
         tradesStatus: state.trades.isEmpty ? LoadStatus.failure : LoadStatus.success,
-      ));
+      ),);
     }
   }
 
@@ -245,7 +245,7 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
       if (seq != _loadSeq) return;
       emit(state.copyWith(
         depthStatus: state.depth == null ? LoadStatus.failure : LoadStatus.success,
-      ));
+      ),);
     }
   }
 

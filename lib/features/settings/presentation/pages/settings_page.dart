@@ -43,11 +43,11 @@ class SettingsPage extends StatelessWidget {
         final SettingsBloc bloc = context.read<SettingsBloc>();
         return ListView(
           padding: const EdgeInsets.fromLTRB(
-              AppSpacing.screen, AppSpacing.xl, AppSpacing.screen, 32),
+              AppSpacing.screen, AppSpacing.xl, AppSpacing.screen, 32,),
           children: <Widget>[
             Text('Settings',
                 style: AppTypography.heroValue
-                    .copyWith(color: p.textPrimary, fontSize: 28)),
+                    .copyWith(color: p.textPrimary, fontSize: 28),),
             const SizedBox(height: 16),
             _AppCard(info: appInfo),
             const SizedBox(height: 20),
@@ -63,7 +63,7 @@ class SettingsPage extends StatelessWidget {
                 ),
                 const SettingsRow(
                     label: 'Default Quote Asset',
-                    hint: 'Pre-selected on Market and Explore'),
+                    hint: 'Pre-selected on Market and Explore',),
                 SegmentRow<String>(
                   options: AppSettings.quoteOptions,
                   selected: s.defaultQuote,
@@ -80,7 +80,7 @@ class SettingsPage extends StatelessWidget {
                     items: <DropdownMenuItem<ChartPeriod>>[
                       for (final ChartPeriod c in ChartPeriod.all)
                         DropdownMenuItem<ChartPeriod>(
-                            value: c, child: Text(c.label)),
+                            value: c, child: Text(c.label),),
                     ],
                     onChanged: (ChartPeriod? c) {
                       if (c != null) bloc.add(DefaultPeriodChanged(c));
@@ -128,7 +128,7 @@ class SettingsPage extends StatelessWidget {
                 SettingsRow(
                   label: 'Build',
                   trailing: Text(appInfo.full,
-                      style: AppTypography.label.copyWith(color: p.textSecondary)),
+                      style: AppTypography.label.copyWith(color: p.textSecondary),),
                 ),
               ],
             ),
@@ -164,10 +164,10 @@ class _AppCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text('Aether Crypto Terminal',
-                    style: AppTypography.sectionTitle.copyWith(color: p.textPrimary)),
+                    style: AppTypography.sectionTitle.copyWith(color: p.textPrimary),),
                 const SizedBox(height: 2),
                 Text('Version ${info.version} (${info.buildNumber})',
-                    style: AppTypography.label.copyWith(color: p.textSecondary)),
+                    style: AppTypography.label.copyWith(color: p.textSecondary),),
                 const SizedBox(height: 4),
                 BlocBuilder<TelemetryBloc, TelemetryState>(
                   builder: (BuildContext context, TelemetryState t) {
@@ -180,7 +180,7 @@ class _AppCard extends StatelessWidget {
                             ? 'Unreachable'
                             : 'Checking…';
                     return Text('● $text',
-                        style: AppTypography.labelStrong.copyWith(color: c));
+                        style: AppTypography.labelStrong.copyWith(color: c),);
                   },
                 ),
               ],
@@ -235,17 +235,17 @@ class _TelemetrySection extends StatelessWidget {
               hint: 'Tap to measure again',
               onTap: () => bloc.add(const TelemetryPinged()),
               trailing: Text(latency,
-                  style: AppTypography.valueMedium.copyWith(color: p.textPrimary)),
+                  style: AppTypography.valueMedium.copyWith(color: p.textPrimary),),
             ),
             SettingsRow(
               label: 'Polling Interval',
               trailing: Text(refreshPolicy.label,
-                  style: AppTypography.label.copyWith(color: p.textSecondary)),
+                  style: AppTypography.label.copyWith(color: p.textSecondary),),
             ),
             SettingsRow(
               label: 'Data Source',
               trailing: Text(dataSourceLabel,
-                  style: AppTypography.label.copyWith(color: p.textSecondary)),
+                  style: AppTypography.label.copyWith(color: p.textSecondary),),
             ),
             Padding(
               padding: const EdgeInsets.all(14),
@@ -257,7 +257,7 @@ class _TelemetrySection extends StatelessWidget {
                       : () => bloc.add(const CacheClearRequested()),
                   child: Text(t.clearing
                       ? 'Resetting…'
-                      : 'Clear Cache & Reset Datafeed'),
+                      : 'Clear Cache & Reset Datafeed',),
                 ),
               ),
             ),

@@ -1,6 +1,7 @@
 /// Null-safe parsing helpers for loosely typed JSON (Binance sends numbers as
 /// strings). They never throw; callers decide whether `null` means "skip the
 /// row" or "fail with ParseException".
+library;
 
 /// `"123.45"`, `123.45` or `123` -> double. NaN / infinity -> null.
 double? parseDouble(Object? value) {

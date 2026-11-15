@@ -78,7 +78,7 @@ class _FilterSheetState extends State<_FilterSheet> {
           ),
           const SizedBox(height: 16),
           Text('Filters & sort',
-              style: AppTypography.sectionTitle.copyWith(color: p.textPrimary)),
+              style: AppTypography.sectionTitle.copyWith(color: p.textPrimary),),
           const SizedBox(height: 16),
           _Section(
             title: '24H PRICE MOVE',
@@ -141,7 +141,7 @@ class _FilterSheetState extends State<_FilterSheet> {
                     side: BorderSide(color: p.surfaceHighest),
                     foregroundColor: p.textPrimary,
                     shape: const RoundedRectangleBorder(
-                        borderRadius: AppRadii.cardRadius),
+                        borderRadius: AppRadii.cardRadius,),
                   ),
                   child: const Text('Reset'),
                 ),
@@ -162,7 +162,7 @@ class _FilterSheetState extends State<_FilterSheet> {
                     backgroundColor: p.primary,
                     foregroundColor: p.onPrimary,
                     shape: const RoundedRectangleBorder(
-                        borderRadius: AppRadii.cardRadius),
+                        borderRadius: AppRadii.cardRadius,),
                   ),
                   child: const Text('Apply'),
                 ),
@@ -189,7 +189,7 @@ class _Section extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(title,
-              style: AppTypography.micro.copyWith(color: p.textSecondary)),
+              style: AppTypography.micro.copyWith(color: p.textSecondary),),
           const SizedBox(height: 8),
           child,
         ],
@@ -239,7 +239,7 @@ class _Options<T> extends StatelessWidget {
                           ? AppTypography.labelStrong
                           : AppTypography.label)
                       .copyWith(
-                          color: v == selected ? p.onPrimary : p.textSecondary),
+                          color: v == selected ? p.onPrimary : p.textSecondary,),
                 ),
               ),
             ),

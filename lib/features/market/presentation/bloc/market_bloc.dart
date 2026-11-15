@@ -109,7 +109,7 @@ class MarketBloc extends Bloc<MarketEvent, MarketState> {
         refreshing: false,
         refreshFailed: false,
         clearError: true,
-      ));
+      ),);
       emit(next);
       _requestSparklines(next.trendPairs);
     } on AppException catch (e) {
@@ -126,13 +126,13 @@ class MarketBloc extends Bloc<MarketEvent, MarketState> {
         refreshing: false,
         refreshFailed: true,
         errorMessage: message,
-      ));
+      ),);
     } else {
       emit(state.copyWith(
         status: LoadStatus.failure,
         refreshing: false,
         errorMessage: message,
-      ));
+      ),);
     }
   }
 
@@ -182,7 +182,7 @@ class MarketBloc extends Bloc<MarketEvent, MarketState> {
     emit(state.copyWith(sparklines: <String, List<double>>{
       ...state.sparklines,
       ...e.series,
-    }));
+    },),);
   }
 
   // --- derivation (pure; use cases do the work) ------------------------------

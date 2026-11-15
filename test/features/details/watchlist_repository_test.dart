@@ -33,7 +33,7 @@ void main() {
 
   test('drops blanks and duplicates from stored data', () async {
     await store.writeStringList(
-        WatchlistRepositoryImpl.storageKey, ['BTCUSDT', ' ', 'btcusdt', 'ETHUSDT']);
+        WatchlistRepositoryImpl.storageKey, ['BTCUSDT', ' ', 'btcusdt', 'ETHUSDT'],);
     expect(await repo.getSymbols(), ['BTCUSDT', 'ETHUSDT']);
   });
 

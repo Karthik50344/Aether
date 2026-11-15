@@ -42,9 +42,9 @@ void main() {
     expect(Fmt.chartAxis(t, '15m'), '14:42');
     expect(Fmt.chartAxis(t, '4h'), 'Nov 14');
     expect(Fmt.chartStamp(t, now: DateTime.utc(2026, 11, 14, 20)),
-        'Today, 14:42 UTC');
+        'Today, 14:42 UTC',);
     expect(Fmt.chartStamp(t, now: DateTime.utc(2026, 11, 16)),
-        'Nov 14, 14:42 UTC');
+        'Nov 14, 14:42 UTC',);
   });
 
   test('ago', () {

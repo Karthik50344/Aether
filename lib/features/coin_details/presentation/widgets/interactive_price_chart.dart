@@ -109,7 +109,7 @@ class _InteractivePriceChartState extends State<InteractivePriceChart> {
         ),
         if (showVol) ...<Widget>[
           const SizedBox(height: 8),
-          _PanelLabel('VOL'),
+          const _PanelLabel('VOL'),
           VolumePanel(
             key: const ValueKey<String>('panel-vol'),
             volumes: _s.volumes,
@@ -226,9 +226,9 @@ class _InteractivePriceChartState extends State<InteractivePriceChart> {
         extraLinesData: ExtraLinesData(
           horizontalLines: <HorizontalLine>[
             tag(_s.high, '${widget.highLowLabel} High ${Fmt.pricedIn(_s.high, widget.quote)}',
-                p.positive, Alignment.topLeft),
+                p.positive, Alignment.topLeft,),
             tag(_s.low, '${widget.highLowLabel} Low ${Fmt.pricedIn(_s.low, widget.quote)}',
-                p.negative, Alignment.bottomRight),
+                p.negative, Alignment.bottomRight,),
           ],
         ),
         lineBarsData: <LineChartBarData>[price, if (maBar != null) maBar],
@@ -314,7 +314,7 @@ class _Readout extends StatelessWidget {
                   style: AppTypography.label
                       .copyWith(color: p.primaryLight, fontSize: 10),
                 ),
-            ]),
+            ],),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),

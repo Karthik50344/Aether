@@ -25,7 +25,7 @@ Future<void> showAddPairSheet(
 
 class _AddPairSheet extends StatefulWidget {
   const _AddPairSheet(
-      {required this.pairs, required this.saved, required this.onAdd});
+      {required this.pairs, required this.saved, required this.onAdd,});
   final List<TradingPair> pairs;
   final Set<String> saved;
   final void Function(String symbol) onAdd;
@@ -59,7 +59,7 @@ class _AddPairSheetState extends State<_AddPairSheet> {
               const SizedBox(height: 16),
               Text('Add Pair',
                   style: AppTypography.sectionTitle
-                      .copyWith(color: p.textPrimary)),
+                      .copyWith(color: p.textPrimary),),
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: TextField(
@@ -82,7 +82,7 @@ class _AddPairSheetState extends State<_AddPairSheet> {
                     ? Center(
                         child: Text('No pairs match "$_query".',
                             style: AppTypography.body
-                                .copyWith(color: p.textSecondary)))
+                                .copyWith(color: p.textSecondary),),)
                     : ListView.builder(
                         itemCount: shown,
                         itemBuilder: (BuildContext _, int i) {
@@ -92,7 +92,7 @@ class _AddPairSheetState extends State<_AddPairSheet> {
                             leading: CoinAvatar(baseAsset: t.baseAsset, size: 36),
                             title: Text(t.displayName,
                                 style: AppTypography.symbol
-                                    .copyWith(color: p.textPrimary)),
+                                    .copyWith(color: p.textPrimary),),
                             subtitle: Text(
                               Fmt.pricedIn(t.lastPrice, t.quoteAsset),
                               style: AppTypography.label
@@ -116,7 +116,7 @@ class _AddPairSheetState extends State<_AddPairSheet> {
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: Text('Showing $shown of ${rows.length} - refine your search.',
-                      style: AppTypography.label.copyWith(color: p.textSecondary)),
+                      style: AppTypography.label.copyWith(color: p.textSecondary),),
                 ),
             ],
           ),

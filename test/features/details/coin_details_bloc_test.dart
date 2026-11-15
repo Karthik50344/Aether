@@ -70,10 +70,10 @@ void main() {
           symbol: any(named: 'symbol'),
           interval: any(named: 'interval'),
           limit: any(named: 'limit'),
-        )).thenAnswer((inv) => f(
+        ),).thenAnswer((inv) => f(
           inv.namedArguments[#interval] as String,
           inv.namedArguments[#limit] as int,
-        ));
+        ),);
   }
 
   setUp(() {
@@ -83,7 +83,7 @@ void main() {
         .thenAnswer((_) async => btc);
     stubCandles((interval, limit) async => interval == '1d'
         ? candles(8, takerBase: 6, takerQuote: 600)
-        : candles(limit));
+        : candles(limit),);
     when(() => repo.getRecentTrades(any(), limit: any(named: 'limit')))
         .thenAnswer((_) async => [
               for (int i = 0; i < 3; i++)
@@ -95,13 +95,13 @@ void main() {
                   time: DateTime.utc(2026, 11, 14, 12, 0, i),
                   isBuyerMaker: false,
                 ),
-            ]);
+            ],);
     when(() => repo.getOrderBookDepth(any(), limit: any(named: 'limit')))
         .thenAnswer((_) async => const OrderBookDepth(
               lastUpdateId: 1,
               bids: [DepthLevel(price: 100, quantity: 6)],
               asks: [DepthLevel(price: 100, quantity: 4)],
-            ));
+            ),);
     bloc = build();
   });
 
@@ -114,7 +114,7 @@ void main() {
         s.chartStatus == LoadStatus.success &&
         s.tradesStatus == LoadStatus.success &&
         s.depthStatus == LoadStatus.success &&
-        s.orderflow != null);
+        s.orderflow != null,);
   }
 
   test('loads every section; symbol is normalised', () async {
@@ -129,7 +129,7 @@ void main() {
     expect(s.depth!.bidShare, closeTo(0.6, 1e-9));
     expect(s.isWatched, isFalse);
     verify(() => repo.getCandlesticks(
-        symbol: 'BTCUSDT', interval: '15m', limit: 96)).called(1);
+        symbol: 'BTCUSDT', interval: '15m', limit: 96,),).called(1);
   });
 
   test('indicators: MA(7) on by default; toggles add and remove', () async {
@@ -146,10 +146,10 @@ void main() {
     await started();
     bloc.add(const ChartPeriodSelected(ChartPeriod.week1));
     final s = await bloc.stream.firstWhere(
-        (s) => s.period == ChartPeriod.week1 && s.series?.length == 168);
+        (s) => s.period == ChartPeriod.week1 && s.series?.length == 168,);
     expect(s.chartStatus, LoadStatus.success);
     verify(() => repo.getCandlesticks(
-        symbol: 'BTCUSDT', interval: '1h', limit: 168)).called(1);
+        symbol: 'BTCUSDT', interval: '1h', limit: 168,),).called(1);
   });
 
   test('stale chart guard: a slow older period cannot overwrite a newer one',
@@ -207,7 +207,7 @@ void main() {
     bloc.add(const CoinDetailsStarted());
     final s = await bloc.stream.firstWhere((s) =>
         s.tradesStatus == LoadStatus.failure &&
-        s.depthStatus == LoadStatus.failure);
+        s.depthStatus == LoadStatus.failure,);
     expect(s.pairStatus, LoadStatus.success);
     expect(s.hasPair, isTrue);
   });
@@ -222,7 +222,7 @@ void main() {
       return bloc.stream.firstWhere((s) =>
           s.chartStatus == LoadStatus.success &&
           s.depthStatus == LoadStatus.success &&
-          s.tradesStatus == LoadStatus.success);
+          s.tradesStatus == LoadStatus.success,);
     })();
     expect(s.orderflow, isNull);
     expect(s.stats!.volumeVs7dAvgPercent, isNull);

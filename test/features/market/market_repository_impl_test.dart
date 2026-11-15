@@ -23,13 +23,13 @@ void main() {
           symbolInfo('LUNA', 'USDT', status: 'BREAK'),
           symbolInfo('WAVES', 'USDT', spot: false),
           symbolInfo('XRP', 'USDT'), // no ticker -> skipped
-        ]);
+        ],);
     when(() => source.fetchTickers()).thenAnswer((_) async => [
           ticker('ETHUSDT', quoteVolume: 5e6),
           ticker('BTCUSDT', quoteVolume: 9e6),
           ticker('LUNAUSDT', quoteVolume: 9e9),
           ticker('WAVESUSDT', quoteVolume: 9e9),
-        ]);
+        ],);
     repo = MarketRepositoryImpl(source, now: () => now);
   });
 
@@ -65,7 +65,7 @@ void main() {
     when(() => source.fetchTickers())
         .thenThrow(const NetworkUnavailableException());
     await expectLater(
-        repo.getTradingPairs(), throwsA(isA<NetworkUnavailableException>()));
+        repo.getTradingPairs(), throwsA(isA<NetworkUnavailableException>()),);
     when(() => source.fetchTickers())
         .thenAnswer((_) async => [ticker('BTCUSDT')]);
     expect((await repo.getTradingPairs()).length, 1);
@@ -74,7 +74,7 @@ void main() {
   test('getTradingPair is case-insensitive and throws NotFound', () async {
     expect((await repo.getTradingPair('btcusdt')).symbol, 'BTCUSDT');
     await expectLater(
-        repo.getTradingPair('LUNAUSDT'), throwsA(isA<NotFoundException>()));
+        repo.getTradingPair('LUNAUSDT'), throwsA(isA<NotFoundException>()),);
   });
 
   test('clearCache forces a reload', () async {
