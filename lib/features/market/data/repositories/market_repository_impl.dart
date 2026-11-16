@@ -1,31 +1,24 @@
 import '../../../../core/errors/app_exception.dart';
+import '../../../../core/utils/clock.dart';
 import '../../../../shared/domain/entities/candlestick.dart';
 import '../../../../shared/domain/entities/order_book_depth.dart';
 import '../../../../shared/domain/entities/recent_trade.dart';
 import '../../../../shared/domain/entities/trading_pair.dart';
 import '../../domain/repositories/market_repository.dart';
 import '../datasources/market_datasource.dart';
-import '../datasources/market_mock_datasource.dart' show Clock;
 import '../models/depth_model.dart';
 import '../models/kline_model.dart';
 import '../models/recent_trade_model.dart';
 import '../models/symbol_info_model.dart';
 import '../models/ticker_24hr_model.dart';
 
-/// The only place that combines raw API models into domain entities, so the
-/// logic is identical for mock and remote data.
-///
-/// Caching (avoids repeated heavy requests):
-///  * exchange symbols - rarely change -> [symbolsTtl] (default 1 h)
-///  * tickers / pairs  - [pairsTtl] (default 10 s)
-///  * concurrent callers share one in-flight request.
 class MarketRepositoryImpl implements MarketRepository {
   MarketRepositoryImpl(
-    this._dataSource, {
-    Clock? now,
-    this.pairsTtl = const Duration(seconds: 10),
-    this.symbolsTtl = const Duration(hours: 1),
-  }) : _now = now ?? DateTime.now;
+      this._dataSource, {
+        Clock? now,
+        this.pairsTtl = const Duration(seconds: 10),
+        this.symbolsTtl = const Duration(hours: 1),
+      }) : _now = now ?? DateTime.now;
 
   final MarketDataSource _dataSource;
   final Clock _now;
@@ -59,7 +52,7 @@ class MarketRepositoryImpl implements MarketRepository {
 
   Future<List<TradingPair>> _loadPairs() async {
     final (List<SymbolInfoModel> symbols, List<Ticker24hrModel> tickers) =
-        await (_loadSymbols(), _dataSource.fetchTickers()).wait;
+    await (_loadSymbols(), _dataSource.fetchTickers()).wait;
 
     final Map<String, Ticker24hrModel> tickerBySymbol = <String, Ticker24hrModel>{
       for (final Ticker24hrModel t in tickers) t.symbol: t,
@@ -72,9 +65,9 @@ class MarketRepositoryImpl implements MarketRepository {
           if (tickerBySymbol[s.symbol] case final Ticker24hrModel t)
             _toPair(s, t),
     ]..sort((TradingPair a, TradingPair b) {
-        final int byVolume = b.quoteVolume.compareTo(a.quoteVolume);
-        return byVolume != 0 ? byVolume : a.symbol.compareTo(b.symbol);
-      });
+      final int byVolume = b.quoteVolume.compareTo(a.quoteVolume);
+      return byVolume != 0 ? byVolume : a.symbol.compareTo(b.symbol);
+    });
 
     final List<TradingPair> result = List<TradingPair>.unmodifiable(pairs);
     _pairs = result;
@@ -114,12 +107,12 @@ class MarketRepositoryImpl implements MarketRepository {
 
   @override
   Future<TradingPair> getTradingPair(
-    String symbol, {
-    bool forceRefresh = false,
-  }) async {
+      String symbol, {
+        bool forceRefresh = false,
+      }) async {
     final String wanted = symbol.trim().toUpperCase();
     final List<TradingPair> pairs =
-        await getTradingPairs(forceRefresh: forceRefresh);
+    await getTradingPairs(forceRefresh: forceRefresh);
     for (final TradingPair p in pairs) {
       if (p.symbol == wanted) return p;
     }

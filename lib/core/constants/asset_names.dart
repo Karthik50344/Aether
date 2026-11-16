@@ -1,8 +1,3 @@
-/// Display names for popular base assets.
-///
-/// Binance market data has no asset names, so this is a small bundled map used
-/// for search ("bitcoin" finds BTC pairs) and the watchlist subtitle.
-/// Unknown assets fall back to their ticker code.
 abstract final class AssetNames {
   static const Map<String, String> _names = <String, String>{
     'BTC': 'Bitcoin',
@@ -36,9 +31,6 @@ abstract final class AssetNames {
     'EUR': 'Euro',
   };
 
-  /// Full name or the code itself when unknown.
   static String nameOf(String asset) => _names[asset] ?? asset;
-
-  /// Name only when known (used by search to avoid matching the code twice).
   static String? knownNameOf(String asset) => _names[asset];
 }

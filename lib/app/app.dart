@@ -10,8 +10,6 @@ import '../shared/ui/settings_scope.dart';
 import 'di/injection.dart';
 import 'router/app_router.dart';
 
-/// Root widget. The router is created once in [State] (never inside build)
-/// so rebuilds don't reset navigation.
 class AetherApp extends StatefulWidget {
   const AetherApp({super.key});
 
@@ -30,9 +28,6 @@ class _AetherAppState extends State<AetherApp> {
 
   @override
   Widget build(BuildContext context) {
-    // Settings drive the theme and (via SettingsScope) compact metrics.
-    // The bloc is a get_it singleton; `.value` exposes it to every route
-    // (SettingsPage reads it via context) without letting the provider close it.
     return BlocProvider<SettingsBloc>.value(
       value: sl<SettingsBloc>(),
       child: BlocBuilder<SettingsBloc, SettingsState>(

@@ -1,8 +1,3 @@
-/// Typed failures that cross layer boundaries.
-///
-/// Data sources / repositories throw these; BLoCs catch [AppException] and
-/// map it to an error state (message + retry). Nothing outside the data layer
-/// ever sees a Dio or platform exception.
 sealed class AppException implements Exception {
   const AppException(this.message);
 

@@ -26,7 +26,6 @@ import '../../features/coin_details/domain/usecases/get_recent_trades.dart';
 import '../../features/explore/domain/usecases/filter_sort_pairs.dart';
 import '../../features/market/data/datasources/market_datasource.dart';
 import '../../core/network/api_client.dart';
-import '../../features/market/data/datasources/market_mock_datasource.dart';
 import '../../features/market/data/datasources/market_remote_datasource.dart';
 import '../../features/market/data/repositories/market_repository_impl.dart';
 import '../../features/market/domain/repositories/market_repository.dart';
@@ -44,7 +43,6 @@ import '../config/app_config.dart';
 
 final GetIt sl = GetIt.instance;
 
-/// Registers every dependency. Safe to call again (e.g. in tests).
 Future<void> configureDependencies({
   AppConfig? config,
   MarketDataSource? marketDataSource,
@@ -53,7 +51,7 @@ Future<void> configureDependencies({
   Duration? autoRefreshInterval = const Duration(seconds: 15),
 }) async {
   await sl.reset();
-  final AppConfig cfg = config ?? AppConfig.fromEnvironment();
+  final AppConfig cfg = config ?? const AppConfig();
   sl.registerSingleton<AppConfig>(cfg);
   sl.registerSingleton<KeyValueStore>(store ?? InMemoryStore());
   sl.registerSingleton<AppInfo>(appInfo);
@@ -76,8 +74,7 @@ Future<void> configureDependencies({
 
   // Data source: the only place that knows mock vs remote.
   sl.registerLazySingleton<MarketDataSource>(() {
-    if (marketDataSource != null) return marketDataSource; // tests
-    if (cfg.useMock) return MarketMockDataSource();
+    if (marketDataSource != null) return marketDataSource;
     return MarketRemoteDataSource(sl<ApiClient>());
   });
   sl.registerLazySingleton<ApiClient>(

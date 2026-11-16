@@ -10,20 +10,6 @@ typedef NowFn = DateTime Function();
 
 Object? _decodeJson(String body) => jsonDecode(body);
 
-/// Thin JSON-over-HTTP GET client around Dio. It is the ONLY place that sees
-/// Dio types: everything leaving it is either decoded JSON or an
-/// [AppException].
-///
-/// Behaviour:
-///  * every HTTP status is inspected here (`validateStatus` accepts all), so
-///    mapping is explicit and testable;
-///  * 429 / 418 -> [RateLimitedException] and a COOLDOWN: until `Retry-After`
-///    (or a default) has passed, further calls fail immediately without
-///    touching the network, so auto-refresh timers can never hammer Binance
-///    into an IP ban;
-///  * timeouts and connection failures are retried [maxRetries] times (GET is
-///    idempotent) before surfacing;
-///  * large bodies are decoded on a background isolate.
 class ApiClient {
   ApiClient(
     this._dio, {

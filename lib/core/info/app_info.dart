@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-/// Real app metadata (from package_info_plus in `main`, a placeholder in tests).
 class AppInfo extends Equatable {
   const AppInfo({
     this.name = 'Aether',
@@ -18,7 +17,6 @@ class AppInfo extends Equatable {
   List<Object?> get props => <Object?>[name, version, buildNumber];
 }
 
-/// How often screens poll the REST API (null = disabled, e.g. in tests).
 class RefreshPolicy extends Equatable {
   const RefreshPolicy(this.interval);
   final Duration? interval;

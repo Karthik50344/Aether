@@ -10,7 +10,6 @@ import '../../features/settings/presentation/pages/privacy_page.dart';
 import '../../features/watchlist/presentation/bloc/watchlist_bloc.dart';
 import '../../shared/ui/data_reset_signal.dart';
 import '../../shared/ui/reset_listener.dart';
-import '../config/app_config.dart';
 import '../di/injection.dart';
 import '../../features/coin_details/presentation/bloc/coin_details_bloc.dart';
 import '../../features/explore/presentation/bloc/explore_bloc.dart';
@@ -25,12 +24,6 @@ import '../../features/watchlist/presentation/pages/watchlist_page.dart';
 import '../../shared/widgets/app_shell.dart';
 import 'route_names.dart';
 
-/// Builds the application router.
-///
-/// * Four tabs live in a [StatefulShellRoute.indexedStack] so each tab keeps
-///   its scroll position / state while switching.
-/// * The pair-details page is a root-level route pushed above the shell
-///   (Figma shows it with a back arrow and its own floating navigation).
 GoRouter buildAppRouter({String initialLocation = RoutePaths.market}) {
   final GlobalKey<NavigatorState> rootKey = GlobalKey<NavigatorState>();
 
@@ -72,9 +65,8 @@ GoRouter buildAppRouter({String initialLocation = RoutePaths.market}) {
                       signal: sl<DataResetSignal>(),
                       onReset: (BuildContext c) =>
                           c.read<MarketBloc>().add(const MarketRefreshed()),
-                      child: MarketPage(
-                    sourceLabel:
-                        sl<AppConfig>().useMock ? 'SAMPLE DATA' : 'SPOT',
+                      child: const MarketPage(
+                    sourceLabel: 'SPOT',
                   ),
                   ),
                   ),
@@ -101,8 +93,7 @@ GoRouter buildAppRouter({String initialLocation = RoutePaths.market}) {
                       onReset: (BuildContext c) =>
                           c.read<ExploreBloc>().add(const ExploreRefreshed()),
                       child: ExplorePage(
-                        sourceLabel:
-                            sl<AppConfig>().useMock ? 'SAMPLE DATA' : 'REST',
+                        sourceLabel: 'REST',
                         focusSignal: sl<SearchFocusSignal>(),
                       ),
                     ),
@@ -135,9 +126,7 @@ GoRouter buildAppRouter({String initialLocation = RoutePaths.market}) {
                   child: SettingsPage(
                     appInfo: sl<AppInfo>(),
                     refreshPolicy: sl<RefreshPolicy>(),
-                    dataSourceLabel: sl<AppConfig>().useMock
-                        ? 'Sample data (offline JSON)'
-                        : 'Binance Spot REST',
+                    dataSourceLabel: 'Binance Spot REST',
                   ),
                 ),
               ),

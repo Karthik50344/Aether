@@ -11,7 +11,7 @@ import '../../support/fake_market_data_source.dart';
 void main() {
   setUp(() async {
     await configureDependencies(
-      config: const AppConfig(dataSource: DataSourceMode.mock),
+      config: const AppConfig(),
       marketDataSource: FakeMarketDataSource(),
       autoRefreshInterval: null,
     );

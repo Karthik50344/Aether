@@ -1,4 +1,3 @@
-/// Route paths and names in one place (no magic strings elsewhere).
 abstract final class RoutePaths {
   static const String market = '/market';
   static const String explore = '/explore';

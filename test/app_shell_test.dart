@@ -9,7 +9,7 @@ import 'support/fake_market_data_source.dart';
 void main() {
   setUp(() async {
     await configureDependencies(
-      config: const AppConfig(dataSource: DataSourceMode.mock),
+      config: const AppConfig(),
       marketDataSource: FakeMarketDataSource(),
       autoRefreshInterval: null,
     );
@@ -60,12 +60,5 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Explore Markets'), findsOneWidget);
     await unmount(tester);
-  });
-
-  test('AppConfig exposes the selected data source', () {
-    const AppConfig mock = AppConfig(dataSource: DataSourceMode.mock);
-    const AppConfig remote = AppConfig(dataSource: DataSourceMode.remote);
-    expect(mock.useMock, isTrue);
-    expect(remote.useRemote, isTrue);
   });
 }

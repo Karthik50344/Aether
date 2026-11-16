@@ -1,6 +1,3 @@
-/// App-curated sector tags. Binance exposes NO category data, so this is a
-/// small hand-maintained list of well-known base assets. It is labelled as
-/// "app-curated" in the UI and only covers assets listed here.
 class Sector {
   const Sector._(this.id, this.label, this._assets);
 
