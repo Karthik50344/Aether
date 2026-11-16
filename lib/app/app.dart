@@ -32,15 +32,15 @@ class _AetherAppState extends State<AetherApp> {
       value: sl<SettingsBloc>(),
       child: BlocBuilder<SettingsBloc, SettingsState>(
       builder: (BuildContext context, SettingsState state) {
-        final AppSettings s = state.settings;
+        final AppSettings settings = state.settings;
         return SettingsScope(
-          settings: s,
+          settings: settings,
           child: MaterialApp.router(
             title: 'Aether',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
-            themeMode: _modeOf(s.theme),
+            themeMode: _modeOf(settings.theme),
             routerConfig: _router,
           ),
         );
